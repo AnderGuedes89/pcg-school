@@ -1,0 +1,17 @@
+.loader-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  opacity: 0.8;
+  background-color: #000000;
+}
+
+.spinner-border {
+  display: block;
+  position: fixed;
+  top: calc(50% - (58px / 2));
+  right: calc(50% - (58px / 2));
+  color: #0d6efd;
+}

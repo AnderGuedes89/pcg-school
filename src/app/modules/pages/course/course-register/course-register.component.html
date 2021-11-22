@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4>Curso - Incluir</h4>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-12">
+            <label for="name">Nome:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              [formControl]="name"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="instructor">Instrutor(a):</label>
+            <input
+              type="text"
+              class="form-control"
+              id="instructor"
+              [formControl]="instructor"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="local">Local:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="local"
+              [formControl]="local"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="workload">Carga Horária:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="workload"
+              [formControl]="workload"
+            />
+          </div>
+          <div class="col-6">
+            <label for="startDate">Data Início:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="startDate"
+              [formControl]="startDate"
+              mask="00/00/0000"
+              placeholder="00/00/0000"
+            />
+          </div>
+        </div>
+      </form>
+      <button type="button" class="btn btn-primary mt-3" (click)="newCourse()">
+        Incluir
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary mt-3 ms-2"
+        (click)="returnToCourses()"
+      >
+        Voltar
+      </button>
+    </div>
+  </div>
+</div>

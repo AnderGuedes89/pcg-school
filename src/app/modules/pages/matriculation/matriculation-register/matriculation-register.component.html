@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4>Matrícula - Incluir</h4>
+      <label for="">Aluno:</label>
+      <select class="form-select">
+        <option selected>Selecione</option>
+        <option *ngFor="let student of students" value="{{ student.codigo }}">
+          {{ student.nome }}
+        </option>
+      </select>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h4>Adicionar Curso</h4>
+          <form [formGroup]="form">
+            <div class="row">
+              <div class="col-6">
+                <label for="course">Curso:</label>
+
+                <select class="form-select">
+                  <option selected>Selecione</option>
+                  <option
+                    *ngFor="let course of courses"
+                    value="{{ course.codigo }}"
+                  >
+                    {{ course.nome }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="matriculationDate">Data de Matrícula:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="matriculationDate"
+                  [formControl]="matriculationDate"
+                  mask="00/00/0000"
+                  placeholder="00/00/0000"
+                />
+              </div>
+            </div>
+          </form>
+          <button type="button" class="btn btn-primary mt-3">Adicionar</button>
+          <table class="table caption-top">
+            <thead>
+              <tr>
+                <th scope="col">Curso</th>
+                <th scope="col">Data de Matrícula</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let matriculation of matriculations">
+                <td>{{ matriculation.listaMatriculaCurso.curso.nome }}</td>
+                <td>
+                  {{ matriculation.listaMatriculaCurso.dataMatriculaCurso | date: "dd/MM/YYYY" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary mt-3"
+        (click)="newMatriculation()"
+      >
+        Incluir
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary mt-3 ms-2"
+        (click)="returnToMatriculation()"
+      >
+        Voltar
+      </button>
+    </div>
+  </div>
+</div>

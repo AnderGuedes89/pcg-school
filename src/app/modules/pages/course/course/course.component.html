@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4>Curso</h4>
+      <form [formGroup]="form">
+        <label for="name">Nome:</label>
+        <input
+          class="form-control"
+          id="name"
+          type="text"
+          formControlName="name"
+        />
+        <button
+          type="button"
+          class="btn btn-primary mt-3 mb-3"
+          (click)="searchCourse()"
+        >
+          Pesquisar
+        </button>
+      </form>
+      <table class="table caption-top">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Código</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Instrutor</th>
+            <th scope="col">Local</th>
+            <th scope="col">Carga Horária</th>
+            <th scope="col">Data Início</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of courses">
+            <td>
+              <input
+                type="radio"
+                name="selectedCourse"
+                (click)="onSelectionChange(course)"
+              />
+            </td>
+            <td>{{ course.codigo }}</td>
+            <td>{{ course.nome }}</td>
+            <td>{{ course.instrutor }}</td>
+            <td>{{ course.local }}</td>
+            <td>{{ course.cargaHoraria }}</td>
+            <td>{{ course.dataInicio | date: "dd/MM/yyyy" }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-primary mt-3" (click)="newCourse()">
+        Incluir
+      </button>
+      <button type="button" class="btn btn-primary mt-3 ms-2">Alterar</button>
+      <button type="button" class="btn btn-primary mt-3 ms-2">Excluir</button>
+    </div>
+  </div>
+</div>

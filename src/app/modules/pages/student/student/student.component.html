@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4>Aluno</h4>
+      <form [formGroup]="form">
+        <label for="name">Nome:</label>
+        <input
+          class="form-control"
+          id="name"
+          type="text"
+          formControlName="name"
+        />
+        <button
+          type="button"
+          class="btn btn-primary mt-3 mb-3"
+          (click)="searchStudent()"
+        >
+          Pesquisar
+        </button>
+      </form>
+      <table class="table caption-top">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Código</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Data Nascimento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students">
+            <td>
+              <input
+                type="radio"
+                name="selectedStudent"
+                (click)="onSelectionChange(student)"
+              />
+            </td>
+            <td>{{ student.codigo }}</td>
+            <td>{{ student.nome }}</td>
+            <td>{{ student.dataNascimento | date: "dd/MM/yyyy" }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-primary mt-3" (click)="newStudent()">
+        Incluir
+      </button>
+      <button type="button" class="btn btn-primary mt-3 ms-2">Alterar</button>
+      <button type="button" class="btn btn-primary mt-3 ms-2">Excluir</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4>Matrícula</h4>
+      <form [formGroup]="form">
+        <label for="">Aluno:</label>
+        <select class="form-select">
+          <option selected value="">Selecione</option>
+          <option *ngFor="let student of students" [value]="student.codigo">
+            {{ student.nome }}
+          </option>
+        </select>
+        <button
+          type="button"
+          class="btn btn-primary mt-3 mb-3"
+          (click)="searchMatriculation()"
+        >
+          Pesquisar
+        </button>
+      </form>
+      <table class="table caption-top">
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let matriculation of matriculations">
+            <td>{{ matriculation.codigo }}</td>
+            <td>{{ matriculation.aluno.nome }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button
+        type="button"
+        class="btn btn-primary mt-3"
+        (click)="newMatriculation()"
+      >
+        Incluir
+      </button>
+      <button type="button" class="btn btn-primary mt-3 ms-2">Excluir</button>
+    </div>
+  </div>
+</div>
