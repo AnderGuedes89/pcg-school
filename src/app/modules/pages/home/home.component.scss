@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Road+Rage&display=swap");
+
+span {
+  font-family: "Road Rage", cursive;
+  font-size: 1000%;
+  color: #0d6efd;
+}
+
+.card-title {
+  font-family: "Road Rage", cursive;
+  font-size: 200%;
+  color: #0d6efd;
+}
+
+div.container {
+  height: 70vh;
+  position: relative;
+}
+
+div.container span {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.card {
+  border: 1px solid #0d6efd;
+}

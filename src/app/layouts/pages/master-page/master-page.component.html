@@ -1,8 +1,8 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="router != '/'"></app-navbar>
 
 <div class="row">
   <div class="col-1">
-    <app-sidebar></app-sidebar>
+    <app-sidebar *ngIf="router != '/'"></app-sidebar>
   </div>
   <div class="col-11">
     <router-outlet></router-outlet>

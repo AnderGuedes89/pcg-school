@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoaderService } from './shared/services/loader.service';
 
 @Component({
