@@ -49,7 +49,11 @@ export class StudentComponent implements OnInit {
 
   changeStudent() {
     let selected = this.selectedStudent;
-    this.router.navigate(['/alunos/alterar/', selected.nome]);
+    if (selected) {
+      this.router.navigate(['/alunos/alterar/', selected.nome]);
+    } else {
+      alert('Selecione um aluno');
+    }
   }
 
   removeStudent() {

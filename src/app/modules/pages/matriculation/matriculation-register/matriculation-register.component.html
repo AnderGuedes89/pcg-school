@@ -49,10 +49,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let matriculation of matriculations">
-                <td>{{ matriculation.listaMatriculaCurso.curso.nome }}</td>
+              <tr *ngFor="let matriculation of matriculations; index as i">
+                <td>{{ matriculation.listaMatriculaCurso[0].curso.nome }}</td>
                 <td>
-                  {{ matriculation.listaMatriculaCurso.dataMatriculaCurso | date: "dd/MM/YYYY" }}
+                  {{ matriculation.listaMatriculaCurso[0].dataMatriculaCurso | date: "dd/MM/YYYY" }}
                 </td>
               </tr>
             </tbody>

@@ -49,7 +49,11 @@ export class CourseComponent implements OnInit {
 
   changeCourse() {
     let selected = this.selectedCourse;
-    this.router.navigate(['/cursos/alterar/', selected.nome]);
+    if (selected) {
+      this.router.navigate(['/cursos/alterar/', selected.nome]);
+    } else {
+      alert('Selecione um curso');
+    }
   }
 
   removeCourse() {
