@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Student from 'src/app/modules/models/student.model';
 import { StudentService } from 'src/app/modules/services/student.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { StudentService } from 'src/app/modules/services/student.service';
 })
 export class StudentRegisterComponent implements OnInit {
   public form!: FormGroup;
+  public studentName!: string;
+  public studentData: Student[] = [];
   public name = this.fb.control('', {
     validators: [Validators.required, Validators.maxLength(255)],
     updateOn: 'blur',
@@ -22,7 +25,8 @@ export class StudentRegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public studentService: StudentService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.form = this.fb.group({
       name: this.name,
@@ -30,7 +34,24 @@ export class StudentRegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  public loadFormData() {
+    this.form.patchValue({
+      name: this.studentData[0].nome,
+      birthday: this.studentData[0].dataNascimento,
+    });
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.studentName = params['id'];
+      this.studentService
+      .consultar(this.studentName)
+      .subscribe((response: any) => {
+        this.studentData = response;
+        this.loadFormData();
+      });
+    });
+  }
 
   newStudent() {
     var request = this.form.value;

@@ -21,12 +21,20 @@
       <table class="table caption-top">
         <thead>
           <tr>
+            <th scope="col"></th>
             <th scope="col">Código</th>
             <th scope="col">Nome</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let matriculation of matriculations">
+            <td>
+              <input
+                type="radio"
+                name="selectedCourse"
+                (click)="onSelectionChange(matriculation)"
+              />
+            </td>
             <td>{{ matriculation.codigo }}</td>
             <td>{{ matriculation.aluno.nome }}</td>
           </tr>
@@ -39,7 +47,13 @@
       >
         Incluir
       </button>
-      <button type="button" class="btn btn-primary mt-3 ms-2">Excluir</button>
+      <button
+        type="button"
+        class="btn btn-primary mt-3 ms-2"
+        (click)="removeMatriculation()"
+      >
+        Excluir
+      </button>
     </div>
   </div>
 </div>

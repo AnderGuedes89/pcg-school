@@ -45,8 +45,20 @@
       <button type="button" class="btn btn-primary mt-3" (click)="newStudent()">
         Incluir
       </button>
-      <button type="button" class="btn btn-primary mt-3 ms-2">Alterar</button>
-      <button type="button" class="btn btn-primary mt-3 ms-2">Excluir</button>
+      <button
+        type="button"
+        class="btn btn-primary mt-3 ms-2"
+        (click)="changeStudent()"
+      >
+        Alterar
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary mt-3 ms-2"
+        (click)="removeStudent()"
+      >
+        Excluir
+      </button>
     </div>
   </div>
 </div>

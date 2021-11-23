@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Course from 'src/app/modules/models/course.model';
 import { CourseService } from 'src/app/modules/services/course.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { CourseService } from 'src/app/modules/services/course.service';
 })
 export class CourseRegisterComponent implements OnInit {
   public form!: FormGroup;
+  public courseName!: string;
+  public courseData: Course[] = [];
   public name = this.fb.control('', {
     validators: [Validators.required, Validators.maxLength(255)],
     updateOn: 'blur',
@@ -34,7 +37,8 @@ export class CourseRegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public courseService: CourseService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.form = this.fb.group({
       name: this.name,
@@ -45,7 +49,27 @@ export class CourseRegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  public loadFormData() {
+    this.form.patchValue({
+      name: this.courseData[0].nome,
+      instructor: this.courseData[0].instrutor,
+      local: this.courseData[0].local,
+      workload: this.courseData[0].cargaHoraria,
+      startDate: this.courseData[0].dataInicio,
+    });
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.courseName = params['id'];
+      this.courseService
+        .consultar(this.courseName)
+        .subscribe((response: any) => {
+          this.courseData = response;
+          this.loadFormData();
+        });
+    });
+  }
 
   newCourse() {
     var request = this.form.value;

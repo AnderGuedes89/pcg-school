@@ -10,8 +10,8 @@ import { CourseService } from 'src/app/modules/services/course.service';
   styleUrls: ['./course.component.scss'],
 })
 export class CourseComponent implements OnInit {
-  courses: Course[] = [];
-  selectedCourse!: Course;
+  public courses: Course[] = [];
+  public selectedCourse!: Course;
   public form!: FormGroup;
   public name = this.fb.control('', {
     validators: [Validators.maxLength(255)],
@@ -45,5 +45,18 @@ export class CourseComponent implements OnInit {
 
   onSelectionChange(course: Course) {
     this.selectedCourse = course;
+  }
+
+  changeCourse() {
+    let selected = this.selectedCourse;
+    this.router.navigate(['/cursos/alterar/', selected.nome]);
+  }
+
+  removeCourse() {
+    let request = this.selectedCourse;
+    this.courseService.remover(request).subscribe((response: any) => {
+      alert(response['mensagem']);
+      location.reload();
+    });
   }
 }

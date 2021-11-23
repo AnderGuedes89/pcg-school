@@ -10,8 +10,8 @@ import { StudentService } from 'src/app/modules/services/student.service';
   styleUrls: ['./student.component.scss'],
 })
 export class StudentComponent implements OnInit {
-  students: Student[] = [];
-  selectedStudent!: Student;
+  public students: Student[] = [];
+  public selectedStudent!: Student;
   public form!: FormGroup;
   public name = this.fb.control('', {
     validators: [Validators.maxLength(255)],
@@ -45,5 +45,18 @@ export class StudentComponent implements OnInit {
 
   onSelectionChange(student: Student) {
     this.selectedStudent = student;
+  }
+
+  changeStudent() {
+    let selected = this.selectedStudent;
+    this.router.navigate(['/alunos/alterar/', selected.nome]);
+  }
+
+  removeStudent() {
+    let request = this.selectedStudent;
+    this.studentService.remover(request).subscribe((response: any) => {
+      alert(response['mensagem']);
+      location.reload();
+    });
   }
 }

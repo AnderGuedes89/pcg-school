@@ -16,6 +16,7 @@ export class MatriculationComponent implements OnInit {
   public students: Student[] = [];
   // public matriculations: Matriculation[] = [];
   public matriculations: any[] = [];
+  public selectedMatriculation!: Matriculation;
   public codigo = this.fb.control('', {
     validators: [Validators.maxLength(255)],
     updateOn: 'blur',
@@ -52,5 +53,17 @@ export class MatriculationComponent implements OnInit {
 
   newMatriculation() {
     this.router.navigate(['/inscricao']);
+  }
+
+  onSelectionChange(matriculations: Matriculation) {
+    this.selectedMatriculation = matriculations;
+  }
+
+  removeMatriculation() {
+    let request = this.selectedMatriculation;
+    this.matriculationService.remover(request).subscribe((response: any) => {
+      alert(response['mensagem']);
+      location.reload();
+    });
   }
 }

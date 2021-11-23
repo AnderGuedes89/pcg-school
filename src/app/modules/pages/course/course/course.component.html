@@ -51,8 +51,20 @@
       <button type="button" class="btn btn-primary mt-3" (click)="newCourse()">
         Incluir
       </button>
-      <button type="button" class="btn btn-primary mt-3 ms-2">Alterar</button>
-      <button type="button" class="btn btn-primary mt-3 ms-2">Excluir</button>
+      <button
+        type="button"
+        class="btn btn-primary mt-3 ms-2"
+        (click)="changeCourse()"
+      >
+        Alterar
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary mt-3 ms-2"
+        (click)="removeCourse()"
+      >
+        Excluir
+      </button>
     </div>
   </div>
 </div>
